@@ -6,7 +6,7 @@
 	<meta http-equiv="Pragma" content="no-cache" />
 	<meta http-equiv="Expires" content="0" />
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0,viewport-fit=cover">
-    <title>返校通行证(2分钟内有效)</title>
+    <title>出校通行证(2分钟内有效)</title>
     <link rel="stylesheet" href="css/weui.min.css">
     <script type="text/javascript" src="js/Untitled-1.js" charset="UTF-8"></script>
 </head>
@@ -17,7 +17,15 @@
 }
 </style>
 <div id="bodyDiv">
-	<p style="text-align:center;" id="imgBg"><br/><img src="images/pass1.png" alt=""><br/><br/></p>
+	<p style="text-align:center;" name="colorbg" id="colorbg">
+		<br><img src="./images/pass1.png" width="330px" height="225px" alt=""><br>
+		<font style="font-size:100px" color="#000000"><script>var t = new Date();
+			var hour = t.getHours();
+			var minute = t.getMinutes();
+			var second = t.getSeconds();
+			var nowTime = hour+((minute<10)?":0":":")+minute+((second<10)?":0":":")+second;
+			document.write(nowTime);</script></font>
+	</p>
 	<div class="weui-cells__title">学生返校通行证</div>
 	<div class="weui-cells">
 		<div class="weui-cell  weui-cell_example">
@@ -44,15 +52,12 @@
 		<div class="weui-cell  weui-cell_example">
 			<div class="weui-cell__hd"><img src="images/time.png" alt="" style="width: 20px; margin-right: 16px; display: block;"></div>
 			<div class="weui-cell__bd">
-				<p>时间：<script type="text/javascript">var t = new Date();
-	var year = t.getFullYear();
-	var month = t.getMonth()+1;
-	var day = t.getDate();
-	var hour = t.getHours();
-	var minute = t.getMinutes();
-	var second = t.getSeconds();
-	var nowTime = year+"/"+month+"/"+day+" "+hour+((minute<10)?":0":":")+minute+((second<10)?":0":":")+second;
-	document.write(nowTime);
+				<p>时间：<script type="text/javascript">var d = new Date();
+					var year = d.getFullYear();
+					var month = d.getMonth()+1;
+					var day = d.getDate();
+					var nowData = year+"/"+month+"/"+day;
+					document.write(nowData);
 </script></p>
 			</div>
 		</div>
@@ -65,5 +70,41 @@
 	</div>
 </div>
 <script type="text/javascript" src="js/Untitled-1.js"></script>
+<script>
+    colorbg.onclick = function(){
+        showdiv()
+    }
+	
+	function showdiv() {            
+		 document.getElementById("bg").style.display = "block";
+		 document.getElementById("show").style.display = "block";
+	}
+	function hidediv() {
+		
+		var color = document.getElementById("colorin"); 　　      　　　　　　　　//通过使用 getElementById() 来访问 <color> 元素
+　　	    var colorInfo = document.getElementById("colorInfo");
+　　		colorInfo.style.color = color.value; 　　　　　　　　　　　　　　　　 //给<span>的字体加颜色
+　　		colorInfo.innerHTML = color.value;　　　　　　　　 　　　　　　　　 //给<span>加内容(<color>的值)
+		colorChosen = color.value;
+		if (window.localStorage) {
+            localStorage.bgcolor=colorChosen
+		}else{
+            alert("不支持")
+		}
+		document.getElementById('colorbg').style.background = colorChosen;//2、在div节点上显示
+		document.getElementById("bg").style.display = 'none';
+		document.getElementById("show").style.display = 'none';
+　　}
+	
+	function myfun(){ 
+	　　 
+    } 　　
+    /*用window.onload调用myfun()*/　
+    　
+    // 不要括号
+    window.onload = myfun
+	 
+	
+</script>
 </body>
 </html>
