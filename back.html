@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/weui.min.css">
     <script type="text/javascript" src="js/Untitled-1.js" charset="UTF-8"></script>
 </head>
-<body ontouchstart>
+<body ontouchstart onload="disptime()">
 <style type="text/css">
 .myttpp{
 	border: none;
@@ -19,12 +19,8 @@
 <div id="bodyDiv">
 	<p style="text-align:center;" name="colorbg" id="colorbg">
 		<br><img src="./images/pass1.png" width="330px" height="225px" alt=""><br>
-		<font style="font-size:100px" color="#000000"><script>var t = new Date();
-			var hour = t.getHours();
-			var minute = t.getMinutes();
-			var second = t.getSeconds();
-			var nowTime = hour+((minute<10)?":0":":")+minute+((second<10)?":0":":")+second;
-			document.write(nowTime);</script></font>
+		<font style="font-size:100px" color="#000000" id="myclock">
+		</font>
 	</p>
 	<div class="weui-cells__title">学生返校通行证</div>
 	<div class="weui-cells">
@@ -102,13 +98,17 @@
 		document.getElementById("show").style.display = 'none';
 　　}
 	
-	function myfun(){ 
-	　　 
-    } 　　
-    /*用window.onload调用myfun()*/　
-    　
-    // 不要括号
-    window.onload = myfun
+	function disptime(){  
+		var t = new Date();
+		var hour = t.getHours();
+		var minute = t.getMinutes();
+		var second = t.getSeconds();
+		var nowTime = hour+((minute<10)?":0":":")+minute+((second<10)?":0":":")+second;
+		document.getElementById("myclock").innerHTML=nowTime
+		  
+	}   
+	//setInterval（）方法可以按照指定的周期调用函数或计算表达式  
+	var mytime = setInterval("disptime()",1000);  　
 	 
 	
 </script>
